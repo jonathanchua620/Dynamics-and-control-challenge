@@ -47,3 +47,4 @@ f_np = [-(dPD+dx)*xdot;
          M_phi-d_phi*phi_dot];
 
 % Question 1e:
+
