@@ -45,3 +45,5 @@ V = mb*g*y + mc*g*y + mh*g*(y + L23*sin(phi-phi_h3)) + 0.5*ky*(y-yref)^2 + 0.5*k
 
 f_np = [-(dPD+dx)*xdot;
          M_phi-d_phi*phi_dot];
+
+% Question 1e:
