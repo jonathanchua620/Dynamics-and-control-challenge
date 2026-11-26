@@ -1,5 +1,16 @@
 open('MeasuredSignals-1.mat');
 
+
+sys="D1_f";
+load_system("D1_f.slx");
+set_param(sys,"StopTime","20");
+set_param(sys,"Solver","ode4");
+set_param(sys,"FixedStep","1e-3");
+
+results = sim("D1_f.slx");
+
+
+
 t = MeasuredSignals.t;
 
 x=MeasuredSignals.x;
@@ -7,10 +18,22 @@ x=MeasuredSignals.x;
 varphi=MeasuredSignals.varphi;
 
 figure
-plot(t, x);
+plot(t, x,"DisplayName", "Provided measured data");
+hold on
+plot(results.tout,results.q(:,1),"DisplayName", "Simulink");
+xlabel("Time, [s]")
+ylabel("x [m]")
+legend 
 
 figure
-plot(t, varphi);
+p3=plot(t, varphi, "b");
+hold on
+p4=plot(results.tout,results.q(:,2),"r");
+xlabel("Time, [s]")
+ylabel("phi [m]")
+legend([p3 , p4], {'provided data', 'simulink'})
+
+
 
 
 
