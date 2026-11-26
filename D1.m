@@ -47,12 +47,12 @@ f_np = [-(dPD+dx)*xdot;
          M_phi-d_phi*phi_dot];
 
 % Question 1e:
-ddt_Tcommaq_dot = [(mh + mc)*xdoubledot - mh*phi_doubledot(L23*sin(phi-phi_h3)) - mh*(phi_dot^2)*(L23*cos(phi-phi_h3)) ;
+ddt_Tcommaq_dot = [(mh + mc)*xdoubledot - mh*phi_doubledot*(L23*sin(phi-phi_h3)) - mh*(phi_dot^2)*(L23*cos(phi-phi_h3)) ;
     Jh2*phi_doubledot + mh*L23*(-xdoubledot*sin(phi-phi_h3) -xdot*cos(phi-phi_h3)*phi_dot + ydoubledot*cos(phi-phi_h3) - ydot*sin(phi-phi_h3)*phi_dot)
     ];
 
 T_commaq = [0; 
-    -mh*L23(xdot*cos(phi-phi_h3)*phi_dot + ydot*sin(phi=phi_h3)*phi_dot)
+    -mh*L23(xdot*cos(phi-phi_h3)*phi_dot + ydot*sin(phi-phi_h3)*phi_dot)
     ];
 
 V_commaq = [kPD*(x-xPDref);
@@ -60,7 +60,7 @@ V_commaq = [kPD*(x-xPDref);
     ];
 
 
-transpose(f_np) = ddt_Tcommaq_dot - T_commaq + V_commaq;
+transpose(f_np) == ddt_Tcommaq_dot - T_commaq + V_commaq;
 
 
 
