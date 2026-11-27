@@ -1,5 +1,6 @@
+clear;clc;close all;
 open('MeasuredSignals-1.mat');
-
+load("MeasuredSignals-1.mat")
 
 sys="D1_f";
 load_system("D1_f.slx");
@@ -17,21 +18,30 @@ x=MeasuredSignals.x;
 
 varphi=MeasuredSignals.varphi;
 
+
+tout=results.tout;
+
+q_2d = squeeze(results.q);
+x_sim = q_2d(1, :).';
+phi_sim = q_2d(2, :).';
+
+
 figure
-plot(t, x,"DisplayName", "Provided measured data");
+plot(t, x,"b","DisplayName", "Provided measured data");
 hold on
-plot(results.tout,results.q(:,1),"DisplayName", "Simulink");
+plot(tout, x_sim,"r", "DisplayName","Simulink model");
 xlabel("Time, [s]")
 ylabel("x [m]")
 legend 
 
 figure
-p3=plot(t, varphi, "b");
+figure
+plot(t, varphi,"b","DisplayName", "Provided measured data");
 hold on
-p4=plot(results.tout,results.q(:,2),"r");
+plot(tout, phi_sim,"r", "DisplayName","Simulink model");
 xlabel("Time, [s]")
-ylabel("phi [m]")
-legend([p3 , p4], {'provided data', 'simulink'})
+ylabel("phi [rad]")
+legend
 
 
 
